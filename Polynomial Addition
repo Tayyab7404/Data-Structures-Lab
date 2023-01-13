@@ -1,0 +1,121 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct SLLPolynomial
+{
+    int coeff,expo;
+    struct SLLPolynomial *next;
+}SLLP;
+
+void PrintPoly(SLLP *head);
+SLLP * CreateNode(int c,int e);
+SLLP * CreatePoly(int n);
+SLLP * AddPoly(SLLP *h1, SLLP *h2);
+
+void main()
+{
+    int n;
+    SLLP *head1,*head2,*head3;
+    
+    printf("Enter size of 1st Ploynomial list: ");
+    scanf("%d",&n);
+    head1 = CreatePoly(n);
+    
+    printf("Enter size of 2nd Polynomial list: ");
+    scanf("%d",&n);
+    head2 = CreatePoly(n);
+    
+    printf("Polynomial 1: ");
+    PrintPoly(head1);
+    printf("Polynomial 2: ");
+    PrintPoly(head2);
+    
+    head3 = AddPoly(head1,head2);
+    printf("Polynomial 1 + Polynomial 2: ");
+    PrintPoly(head3);
+}
+
+void PrintPoly(SLLP *head)
+{
+    while(head!=NULL)
+    {
+        printf("%dx^%d ",head->coeff,head->expo);
+        if(head->next != NULL) printf("+ ");
+        head = head->next;
+    }
+    printf("= 0\n");
+}
+
+SLLP * CreateNode(int c,int e)
+{
+    SLLP *newN;
+    
+    newN = (SLLP*) malloc(sizeof(SLLP));
+    
+    newN->coeff = c;
+    newN->expo = e;
+    newN->next = NULL;
+    
+    return newN;
+}
+
+SLLP * CreatePoly(int n)
+{
+    SLLP *head=NULL,*tail,*newN;
+    int i,c,e;
+    
+    printf("Enter the Polynomial:\n");
+    
+    for(i=0;i<n;i++)
+    {
+        scanf("%d %d",&c,&e);
+        
+        newN = CreateNode(c,e);
+        
+        if(head==NULL) head = newN;
+        else tail->next = newN;
+        
+        tail = newN;
+    }
+    
+    return head;
+}
+
+SLLP * AddPoly(SLLP *h1, SLLP *h2)
+{
+    SLLP *h3=NULL,*newN,*tail;
+    while(h1!=NULL && h2!=NULL)
+    {
+        if(h1->expo == h2->expo)
+        {
+            newN = CreateNode(h1->coeff+h2->coeff, h1->expo);
+            
+            h1 = h1->next;
+            h2 = h2->next;
+        }
+        
+        else if(h1->expo < h2->expo)
+        {
+            newN = CreateNode(h2->coeff,h2->expo);
+            
+            h2 = h2->next;
+        }
+        
+        else
+        {
+            newN = CreateNode(h1->coeff,h1->expo);
+            
+            h1 = h1->next;
+        }
+        
+        if(h3 == NULL) h3 = newN;
+        else tail->next = newN;
+        
+        tail = newN;
+    }
+    
+    if(h1==NULL) tail->next = h2;
+    else if(h2==NULL) tail->next = h1;
+    
+    return h3;
+}
