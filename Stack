@@ -5,57 +5,10 @@
 
 int stack[10],top=-1;
 
-int push(int val)
-{
-    if(top>8)
-    {
-        printf("Stack Overflow!\n");
-        return -99;
-    }
-    
-    stack[++top] = val;
-}
-
-int pop()
-{
-    if(top==-1)
-    {
-        printf("Stack is empty!\n");
-        return -99;
-    }
-    
-    return stack[top--];
-}
-
-int peek()
-{
-    if(top==-1)
-    {
-        printf("Stack is empty!\n");
-        return -99;
-    }
-    
-    return stack[top];
-}
-
-void printstack()
-{
-    if(top==-1)
-    {
-        printf("Stack is empty!\n");
-        return;
-    }
-    
-    int temp = top;
-    
-    printf("Elements in the stack:\n");
-    while(temp>=0)
-    {
-        printf("%d -> ",stack[temp]);
-        temp--;
-    }
-    printf("END\n");
-}
+int push(int val);
+int pop();
+int peek();
+void printstack();
 
 void main()
 {
@@ -111,4 +64,56 @@ void main()
                 printf("Invalid input!\n");
         }
     }
+}
+
+int push(int val)
+{
+    if(top>8)
+    {
+        printf("Stack Overflow!\n");
+        return -99;
+    }
+    
+    stack[++top] = val;
+}
+
+int pop()
+{
+    if(top==-1)
+    {
+        printf("Stack is empty!\n");
+        return -99;
+    }
+    
+    return stack[top--];
+}
+
+int peek()
+{
+    if(top==-1)
+    {
+        printf("Stack is empty!\n");
+        return -99;
+    }
+    
+    return stack[top];
+}
+
+void printstack()
+{
+    if(top==-1)
+    {
+        printf("Stack is empty!\n");
+        return;
+    }
+    
+    int temp = top;
+    
+    printf("Elements in the stack:\n");
+    while(temp>=0)
+    {
+        printf("%d -> ",stack[temp]);
+        temp--;
+    }
+    printf("END\n");
 }
