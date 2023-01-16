@@ -1,4 +1,4 @@
-// Poloynomial Addition:
+// Poloynomial Addition and Multiplication:
 
 #include<stdio.h>
 #include<stdlib.h>
