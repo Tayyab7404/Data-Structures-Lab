@@ -23,7 +23,7 @@ void main()
     int n1,n2;
     SLLP *head1=NULL,*head2=NULL,*head3=NULL;
 
-    printf("Enter size of 1st Ploynomial: ");
+    printf("Enter size of 1st Polynomial: ");
     scanf("%d",&n1);
 
     if(n1>0)    head1 = CreatePoly(n1);
