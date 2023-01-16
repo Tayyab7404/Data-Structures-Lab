@@ -6,6 +6,21 @@
 
 int stack[30], top = -1;
 
+void push(int v);
+int pop();
+int peek();
+void EvalPostfix(char postfix[30]);
+
+void main()
+{
+    char postfix[30];
+    
+    printf("Enter a Postfix Expression: ");
+    scanf(" %[^\n]", postfix);
+    
+    EvalPostfix(postfix);
+}
+
 void push(int v)
 {
     if (top == 28)
@@ -82,14 +97,4 @@ void EvalPostfix(char postfix[30])
     }
     
     printf("Value of %s = %d\n",postfix,peek());
-}
-
-void main()
-{
-    char postfix[30];
-    
-    printf("Enter a Postfix Expression: ");
-    scanf(" %[^\n]", postfix);
-    
-    EvalPostfix(postfix);
 }
