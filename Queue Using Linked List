@@ -12,7 +12,7 @@ typedef struct QLL
 QLL *front=NULL, *rear=NULL;
 
 QLL * CreateNode(int val);
-int Enqueue(int val);
+void Enqueue(int val);
 int Dequeue();
 int PeekQueue();
 void PrintQueue();
@@ -27,16 +27,14 @@ void main()
         printf("Enter your choice: ");
         scanf("%d",&ch);
         
-        switch(ch)
-        {
+        switch(ch){
             case 1:
                 printf("Enter the element to Enqueue: ");
                 scanf("%d",&x);
                 
-                x = Enqueue(x);
-                
-                if(x!=-99)
-                    printf("%d is Enqueued into the Queue\n",x);
+                Enqueue(x);
+    
+                printf("%d is Enqueued into the Queue\n",x);
                     
                 break;
                 
@@ -82,23 +80,16 @@ QLL * CreateNode(int val)
     return newN;
 }
 
-int Enqueue(int val)
+void Enqueue(int val)
 {
     QLL *newN;
     
     newN = CreateNode(val);
     
-    if(front == NULL)
-    {
-        front = newN;
-        rear = newN;
-    }
-    
+    if(front == NULL)   front = newN;
     else rear->next = newN;
     
     rear = newN;
-    
-    return rear->val;
 }
 
 int Dequeue()
