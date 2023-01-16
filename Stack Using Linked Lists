@@ -11,6 +11,65 @@ typedef struct Node
 
 Node *top = NULL;
 
+Node* createNode(int v);
+void push(int v);
+int pop();
+int peek();
+void PrintStack();
+
+int main()
+{
+    int x,ch;
+    
+    printf("\nMENU\n----\n1.Push\n2.Pop\n3.Peek\n4.Print\n5.Exit\n");
+    
+    while(1){
+        printf("Enter your choice: ");
+        scanf("%d",&ch);
+        
+        switch(ch){
+            case 1:
+                printf("Enter the element to push: ");
+                scanf("%d",&x);
+            
+                push(x);
+            
+                printf("%d is pushed into the stack\n",x);
+            
+                break;
+            
+            case 2:
+                x = pop();
+            
+                if(x!=-99)
+                    printf("%d is poped out of the stack\n",x);
+            
+                break;
+            
+            case 3:
+                x = peek();
+            
+                if(x!=-99)
+                    printf("%d is on top of the stack\n",x);
+            
+                break;
+            
+            case 4:
+                PrintStack();
+            
+                break;
+            
+            case 5:
+                printf("Program terminated\n");
+            
+                exit(0);
+            
+            default:
+                printf("Invalid input!\n");
+        }
+    }
+}
+
 Node* createNode(int v)
 {
     Node *n = (Node*)malloc(sizeof(Node));
@@ -73,57 +132,4 @@ void PrintStack()
         temp = temp -> next;
     }
     printf("END\n");
-}
-
-int main()
-{
-    int x,ch;
-    
-    printf("\nMENU\n----\n1.Push\n2.Pop\n3.Peek\n4.Print\n5.Exit\n");
-    
-    while(1){
-        printf("Enter your choice: ");
-        scanf("%d",&ch);
-        
-        switch(ch){
-            case 1:
-                printf("Enter the element to push: ");
-                scanf("%d",&x);
-            
-                push(x);
-            
-                printf("%d is pushed into the stack\n",x);
-            
-                break;
-            
-            case 2:
-                x = pop();
-            
-                if(x!=-99)
-                    printf("%d is poped out of the stack\n",x);
-            
-                break;
-            
-            case 3:
-                x = peek();
-            
-                if(x!=-99)
-                    printf("%d is on top of the stack\n",x);
-            
-                break;
-            
-            case 4:
-                PrintStack();
-            
-                break;
-            
-            case 5:
-                printf("Program terminated\n");
-            
-                exit(0);
-            
-            default:
-                printf("Invalid input!\n");
-        }
-    }
 }
