@@ -7,6 +7,22 @@
 char stack[50];
 int top = -1;
 
+void push(char c);
+char pop();
+char peek();
+char * Postfix(char infix[]);
+
+void main()
+{
+    char infix[50];
+    
+    printf("Enter an infix expression: ");
+    scanf(" %[^\n]", infix);
+    
+    char *postfix = Postfix(infix);
+    printf("%s\n", postfix);
+}
+
 void push(char c)
 {
     if (top == 49)
@@ -95,15 +111,4 @@ char * Postfix(char infix[])
     }
 
     return postfix;
-}
-
-void main()
-{
-    char infix[50];
-    
-    printf("Enter an infix expression: ");
-    scanf(" %[^\n]", infix);
-    
-    char *postfix = Postfix(infix);
-    printf("%s\n", postfix);
 }
