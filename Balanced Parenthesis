@@ -2,7 +2,7 @@
 
 #include<stdio.h>
 
-char stk[50];
+char stack[50];
 int top = -1;
 
 void push(char c);
@@ -23,23 +23,23 @@ void main()
 
 void push(char c)
 {
-	if (top == 49) return;
+	if (top == 48) return;
 		
-	stk[++top] = c;
+	stack[++top] = c;
 }
 
 char pop()
 {
 	if (top == -1)  return 1;
 	
-	return stk[top--];
+	return stack[top--];
 }
 
 char peek()
 {
 	if (top == -1)  return 1;
 	
-	return stk[top];
+	return stack[top];
 }
 
 int isValid(char * expr)
