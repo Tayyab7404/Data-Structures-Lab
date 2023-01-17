@@ -1,0 +1,84 @@
+// Balanced Parenthesis:
+
+#include<stdio.h>
+
+char stk[50];
+int top = -1;
+
+void push(char c);
+char pop();
+char peek();
+int isValid(char * expr);
+
+void main()
+{
+    char expr[50];
+    
+    printf("Enter the expression: ");
+    scanf("%[^\n]",expr);
+    
+    if(isValid(expr)) printf("Valid Expression\n");
+    else printf("Invalid Expression\n");
+}
+
+void push(char c)
+{
+	if (top == 49) return;
+		
+	stk[++top] = c;
+}
+
+char pop()
+{
+	if (top == -1)  return 1;
+	
+	return stk[top--];
+}
+
+char peek()
+{
+	if (top == -1)  return 1;
+	
+	return stk[top];
+}
+
+int isValid(char * expr)
+{
+    int a[126] = {0};
+    
+    a['('] = 1;
+	a['['] = 1;
+	a['{'] = 1;
+	
+	if(a[expr[0]] == 0) return 0;
+	
+	for(int i=0;expr[i] != '\0';i++)
+	{
+	    if(a[expr[i]] == 1) push(expr[i]);
+	    
+	    else
+	    {
+	        switch(expr[i])
+	        {
+	            case ')':
+	                if(peek() == '(') pop();
+	                else return 0;
+	                break;
+	                
+	            case ']':
+	                if(peek() == '[') pop();
+	                else return 0;
+	                break;
+	                
+	            case '}':
+	                if(peek() == '{') pop();
+	                else return 0;
+	                break;
+	        }
+	    }
+	}
+	
+	if(top != -1) return 0;
+	
+	return 1;
+}
