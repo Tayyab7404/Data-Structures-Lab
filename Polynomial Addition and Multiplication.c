@@ -1,5 +1,3 @@
-// Poloynomial Addition and Multiplication:
-
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -85,6 +83,9 @@ SLLP * CreatePoly(int n)
 
 void PrintPoly(SLLP *head)
 {
+    head = SortPoly(head);
+    head = SimplifyPoly(head);
+    
     if(head!=NULL)
     {
         while(head)
@@ -106,11 +107,22 @@ SLLP * AddPoly(SLLP *h1, SLLP *h2)
     
     SLLP *h3=NULL,*newN,*tail;
     
-    while(h1!=NULL && h2!=NULL)
+    while(h1!=NULL || h2!=NULL)
     {
-        if(h1->expo == h2->expo)
+        if (h1 && !h2)
         {
-            newN = CreateNode(h1->coeff+h2->coeff, h1->expo);
+            newN = CreateNode(h1 -> coeff, h1 -> expo);
+            h1 = h1 -> next;
+        }
+        else if (!h1 && h2)
+        {
+            newN = CreateNode(h2 -> coeff, h2 -> expo);
+            h2 = h2 -> next;
+        }
+        
+        else if(h1->expo == h2->expo)
+        {
+            newN = CreateNode(h1->coeff + h2->coeff, h1->expo);
             
             h1 = h1->next;
             h2 = h2->next;
@@ -135,9 +147,6 @@ SLLP * AddPoly(SLLP *h1, SLLP *h2)
         
         tail = newN;
     }
-    
-    if(h1==NULL) tail->next = h2;
-    else if(h2==NULL) tail->next = h1;
     
     h3 = SortPoly(h3);
     h3 = SimplifyPoly(h3);
