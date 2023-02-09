@@ -9,7 +9,7 @@ int stack[30], top = -1;
 void push(int v);
 int pop();
 int peek();
-void EvalPostfix(char postfix[30]);
+int EvalPostfix(char postfix[30]);
 
 void main()
 {
@@ -18,7 +18,7 @@ void main()
     printf("Enter a Postfix Expression: ");
     scanf(" %[^\n]", postfix);
     
-    EvalPostfix(postfix);
+    printf("Value of %s = %d\n", postfix, EvalPostfix(postfix));
 }
 
 void push(int v)
@@ -54,7 +54,7 @@ int peek()
     return stack[top];
 }
 
-void EvalPostfix(char postfix[30])
+int EvalPostfix(char postfix[30])
 {
     char c;
     int i,n1,n2,d;
@@ -68,27 +68,27 @@ void EvalPostfix(char postfix[30])
             case '+':
                 n1 = pop();
                 n2 = pop();
-                push(n1+n2);
+                push(n2+n1);
                 break;
             case '-':
                 n1 = pop();
                 n2 = pop();
-                push(n1-n2);
+                push(n2-n1);
                 break;
             case '*':
                 n1 = pop();
                 n2 = pop();
-                push(n1*n2);
+                push(n2*n1);
                 break;
             case '/':
                 n1 = pop();
                 n2 = pop();
-                push(n1/n2);
+                push(n2/n1);
                 break;
             case '%':
                 n1 = pop();
                 n2 = pop();
-                push(n1%n2);
+                push(n2%n1);
                 break;
             default:
                 d = c - '0';
@@ -96,5 +96,11 @@ void EvalPostfix(char postfix[30])
         }
     }
     
-    printf("Value of %s = %d\n",postfix,peek());
+    if (top > 0)
+	{
+		printf("Invalid expression!!\n");
+		return 0;
+	}
+	
+	return peek();
 }
