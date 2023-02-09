@@ -7,8 +7,7 @@
 //int adj[n][n]={{0,1,0,0,1}, {1,0,1,0,0}, {0,1,0,1,0}, {0,0,1,0,1}, {1,0,0,1,0}}; --> Pentagon
 //int adj[n][n]={{0,1,1,1,1}, {1,0,1,1,1}, {1,1,0,1,1}, {1,1,1,0,1}, {1,1,1,1,0}}; --> Star in Pentagon
 //int adj[n][n]={{0,0,1,1,0}, {0,0,0,1,1}, {1,0,0,0,1}, {1,1,0,0,0}, {0,1,1,0,0}}; --> Star
-
-int adj[20][20], n, Queue[10], front=-1, rear=-1, visited[10]={0};
+int adj[20][20], n, Queue[20], front=-1, rear=-1, visited[20]={0};
 
 void Enqueue(int val);
 int Dequeue();
