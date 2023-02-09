@@ -16,11 +16,11 @@ void main()
 {
     char infix[50];
     
-    printf("Enter an infix expression: ");
+    printf("Enter an Infix expression: ");
     scanf(" %[^\n]", infix);
     
     char *postfix = Postfix(infix);
-    printf("%s\n", postfix);
+    printf("%s in Postfix: %s\n", infix, postfix);
 }
 
 void push(char c)
