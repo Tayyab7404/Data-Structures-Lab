@@ -10,25 +10,27 @@ void heapify(int a[20], int n);
 
 void main()
 {
+    	int i;
+    
 	printf("Enter the no. of elements: ");
 	scanf("%d", &n);
-	
+
 	printf("Enter the elements: ");
-	for(int i=1; i<=n; i++)
+	for(i=1; i<=n; i++)
 	{
 		scanf("%d", &a[i]);
 	}
-	
-	printf("\nElements Before heapsort:\n");
-	for(int i=1; i<=n; i++)
+
+	printf("\nElements before Heap Sort:\n");
+	for(i=1; i<=n; i++)
 	{
 		printf("%d\t", a[i]);
 	}
-	
+
 	heapsort(a, n);
-	
-	printf("\nElements After heapsort:\n");
-	for(int i=1; i<=n; i++)
+
+	printf("\nElements after Heap Sort:\n");
+	for(i=1; i<=n; i++)
 	{
 		printf("%d\t", a[i]);
 	}
@@ -42,10 +44,14 @@ void adjust(int a[20], int i, int n)
 	while(j <= n)
 	{
 		if(j<n && a[j]<a[j+1])
+		{
 			j++;
+		}
 			
 		if(item > a[j])
+		{
 			break;
+		}
 			
 		a[j/2] = a[j];
 		j *= 2;
@@ -56,10 +62,10 @@ void adjust(int a[20], int i, int n)
 
 void heapify(int a[20], int n)
 {
-	int i;
-	
-	for(i=n/2; i>=1; i--)
+	for(int i=n/2; i>=1; i--)
+	{
 		adjust(a, i, n);
+	}
 }
 
 void heapsort(int a[20], int n)
