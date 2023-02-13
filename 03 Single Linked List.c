@@ -99,6 +99,7 @@ void main()
     head = ReverseList(head);
     printf("The Reversed List is:\n");
     PrintList(head);
+    
 }
 
 void PrintList(SLL *head)
@@ -138,12 +139,12 @@ SLL * CreateNode(int val)
 
 SLL * CreateList(int n)
 {
-    SLL *head=NULL, *newN, *tail;
+    SLL *head=NULL, *newN, *tail; 
     int i,v;
     
     printf("Enter elements into the list: ");
-    
-    for(i=0;i<n;i++){
+    for(i=0; i<n; i++)
+    {
         scanf("%d",&v);
         
         newN = CreateNode(v);
@@ -210,7 +211,7 @@ SLL * InsertAtPosition(SLL *head, SLL *node, int pos)
     
     SLL *temp = head;
     
-    for(int i=1;i<pos-1;i++)
+    for(int i=1; i<pos-1; i++)
     {
         temp = temp->next;
     }
@@ -259,19 +260,19 @@ SLL * DeletePosition(SLL *head, int pos)
     if(pos == 1)
     {
         head = head->next;
-        
+        free(p);
         return head;
     }
-    
+
     for(int i=1;i<pos-1;i++)
     {
         p = p->next;
     }
-    
+
     c = p->next;
     p->next = c->next;
     free(c);
-    
+
     return head;
 }
 
@@ -283,14 +284,15 @@ SLL * DeleteElement(SLL *head, int ele)
         return head;
     }
     
+    SLL *p=head,*c;
+    
     if(head->val == ele)
     {
         head = head->next;
-        
+        free(p);
         return head;
     }
     
-    SLL *p=head,*c;
     
     while(p->next != NULL)
     {
@@ -321,7 +323,7 @@ SLL * SortList1(SLL *head)
     {
         t = head;
         
-        for(int j=0;j<len-i-1;j++)
+        for(int j=0; j<len-i-1; j++)
         {
             if(t->val > t->next->val)
             {
@@ -455,7 +457,6 @@ SLL * MergeSortedLists(SLL *h1, SLL *h2)
         }
         tail = node;
     }
-    
     return h3;
 }
 
