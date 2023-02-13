@@ -9,14 +9,14 @@ void main()
     char s[50];
 
     printf("Enter a string of 1's and 0's: ");
-    scanf("%[^\n]s",s);
+    scanf("%[^\n]",s);
     
     n = strlen(s);
 
     for(i=0;i<n;i++)
     {
         if(s[i] == '1') count++;
-
+        else if(s[i] == ' ');
         else
         {
             if(max<count) max = count;
