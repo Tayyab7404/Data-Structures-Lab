@@ -44,17 +44,9 @@ char peek()
 
 int isValid(char * expr)
 {
-    int a[126] = {0};
-    
-    a['('] = 1;
-	a['['] = 1;
-	a['{'] = 1;
-	
-	if(a[expr[0]] == 0) return 0;
-	
 	for(int i=0;expr[i] != '\0';i++)
 	{
-	    if(a[expr[i]] == 1) push(expr[i]);
+	    if(expr[i] == '(' || expr[i] == '[' || expr[i] == '{') push(expr[i]);
 	    
 	    else
 	    {
